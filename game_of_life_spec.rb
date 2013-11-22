@@ -1,8 +1,10 @@
 require_relative 'game_of_life'
 
 describe GameOfLife, 'evolve' do
-  it 'does stuff' do
-  game = GameOfLife.new
-  game.evolve('.....').should eq('.....')
+  context 'when evauluating evolutions on a single line' do
+    it 'doesnt produce any new life when everything is dead' do
+      game = GameOfLife.new
+      game.evolve('.....').should eq('.....')
+    end
   end
 end
