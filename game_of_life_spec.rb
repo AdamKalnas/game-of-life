@@ -3,8 +3,7 @@ require_relative 'game_of_life'
 describe GameOfLife, 'evolve' do
   context 'when evauluating evolutions on a single line' do
     it 'doesnt produce any new life when everything is dead' do
-      game = GameOfLife.new
-      game.evolve('.....').should eq('.....')
+      subject.evolve('.....').should eq('.....')
     end
   end
 
@@ -12,7 +11,7 @@ describe GameOfLife, 'evolve' do
     it 'doesnt produce any new life when evertying is dead' do
       game = GameOfLife.new
       blankSmallBoard = ['......','......']
-      game.evolve(blankSmallBoard).should eq(blankSmallBoard)
+      subject.evolve(blankSmallBoard).should eq(blankSmallBoard)
     end
   end
 end
