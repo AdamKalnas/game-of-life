@@ -5,6 +5,9 @@ describe GameOfLife, 'evolve' do
     it 'doesnt produce any new life when everything is dead' do
       subject.evolve('.....').should eq('.....')
     end
+    it 'it causes cells to die when there is an underpopulation' do
+      subject.evolve('**...').should eq('.....')
+    end
   end
 
   context 'when evaluating evolutions on two lines' do

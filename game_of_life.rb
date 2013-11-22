@@ -1,6 +1,6 @@
 class GameOfLife
   def evolve(world)
-    return world unless world.respond_to? :each
+    return evolve_single_line_only(world) unless world.respond_to? :each
 
     newWorld = []
     world.each do |line|
@@ -11,5 +11,10 @@ class GameOfLife
       newWorld << newWorldLine
     end
     newWorld
+  end
+
+  private
+  def evolve_single_line_only(world)
+    '.' * world.length
   end
 end
