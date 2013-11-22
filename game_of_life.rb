@@ -3,12 +3,12 @@ class GameOfLife
     return evolve_single_line_only(world) unless world.respond_to? :each
 
     newWorld = []
-    world.each do |line|
-      newWorldLine = ''
-      line.each_char do |c|
-        newWorldLine << '.'
+    for line in world do
+      newLine = ''
+      for c in line.split('') do
+        newLine << '.'
       end
-      newWorld << newWorldLine
+      newWorld << newLine
     end
     newWorld
   end

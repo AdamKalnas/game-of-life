@@ -10,7 +10,7 @@ describe GameOfLife, 'evolve' do
     end
   end
 
-  context 'when evaluating evolutions on two lines' do
+  context 'when evaluating evolutions on multiple lines' do
     let(:blankSmallBoard) do
       ['......',
        '......',
@@ -23,9 +23,15 @@ describe GameOfLife, 'evolve' do
 
     it 'doesnt produce any new when underpopulated' do
       board = ['*....*',
-               '..*...',
-               '......']
+               '......',
+               '..*...']
       subject.evolve(board).should eq(blankSmallBoard)
+    end
+    xit 'lives if it has 3 neighbors' do
+      board = ['......',
+               '..**..',
+               '..**..']
+      subject.evolve(board).should eq(board)
     end
   end
 end
