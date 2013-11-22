@@ -7,4 +7,12 @@ describe GameOfLife, 'evolve' do
       game.evolve('.....').should eq('.....')
     end
   end
+
+  context 'when evaluating evolutions on two lines' do
+    it 'doesnt produce any new life when evertying is dead' do
+      game = GameOfLife.new
+      blankSmallBoard = ['......','......']
+      game.evolve(blankSmallBoard).should eq(blankSmallBoard)
+    end
+  end
 end

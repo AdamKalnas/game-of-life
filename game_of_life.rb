@@ -1,6 +1,5 @@
 class GameOfLife 
   def evolve(world)
-    return '.....'
+   world
   end
-
 end
