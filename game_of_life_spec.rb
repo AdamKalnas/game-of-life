@@ -10,6 +10,7 @@ describe GameOfLife, 'evolve' do
   context 'when evaluating evolutions on two lines' do
     let(:blankSmallBoard) do
       ['......',
+       '......',
        '......']
     end
 
@@ -19,7 +20,8 @@ describe GameOfLife, 'evolve' do
 
     it 'doesnt produce any new when underpopulated' do
       board = ['*....*',
-               '..*...']
+               '..*...',
+               '......']
       subject.evolve(board).should eq(blankSmallBoard)
     end
   end
