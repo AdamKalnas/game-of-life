@@ -8,10 +8,19 @@ describe GameOfLife, 'evolve' do
   end
 
   context 'when evaluating evolutions on two lines' do
-    it 'doesnt produce any new life when evertying is dead' do
-      game = GameOfLife.new
-      blankSmallBoard = ['......','......']
+    let(:blankSmallBoard) do
+      ['......',
+       '......']
+    end
+
+    it 'doesnt produce any new life when everything is dead' do
       subject.evolve(blankSmallBoard).should eq(blankSmallBoard)
+    end
+
+    it 'doesnt produce any new when underpopulated' do
+      board = ['*....*',
+               '..*...']
+      subject.evolve(board).should eq(blankSmallBoard)
     end
   end
 end
