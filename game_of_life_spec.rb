@@ -51,5 +51,20 @@ describe GameOfLife, 'evolve' do
     it 'should should find 8 neighbors for a cell in the middle' do
       subject.gatherNeighbors(1,1,blankSmallBoard).should eq('........')
     end
+
+    it 'should find 3 neighbors when a cell is in the top right tcorner' do
+      subject.gatherNeighbors(0,0, blankSmallBoard).should eq('...')
+    end
+
+    it 'should find 3 neighbors when a cell is in the top left corner' do
+      subject.gatherNeighbors(0,5, blankSmallBoard).should eq('...')
+    end
+
+    it 'should find 3 neighbors when a cell is in the bottom left corner' do
+      subject.gatherNeighbors(2,0, blankSmallBoard).should eq('...')
+    end
+    it 'should find 3 neighbors when a cell is in the bottom right corner' do
+      subject.gatherNeighbors(2,5, blankSmallBoard).should eq('...')
+    end
   end
 end
