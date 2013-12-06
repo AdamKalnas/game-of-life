@@ -57,7 +57,7 @@ class GameOfLife
   end
 
   def columnToTheLeftExists?(column)
-    column -1 >= 0
+    column-1 >= 0
   end
 
   def columnToTheRightExists?(board, column)
