@@ -29,7 +29,7 @@ describe GameOfLife, 'evolve' do
       subject.evolve(board).should eq(blankSmallBoard)
     end
 
-    xit 'lives if it has 3 neighbors' do
+    it 'lives if it has 3 neighbors' do
       board = ['......',
                '..**..',
                '..**..',

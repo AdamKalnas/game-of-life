@@ -3,12 +3,17 @@ class GameOfLife
     return evolve_single_line_only(world) unless world.respond_to? :each
 
     newWorld = []
+    rowNumber = 0
+
     for line in world do
       newLine = ''
+      columnNumber = 0
       for c in line.split('') do
-        newLine << '.'
+        newLine << determineFate(c, gatherNeighbors(rowNumber, columnNumber, world))
+        columnNumber+=1
       end
       newWorld << newLine
+      rowNumber+=1
     end
     newWorld
   end
@@ -18,14 +23,14 @@ class GameOfLife
   end
 
   def gatherNeighbors(row,column, board)
-   topLeft = rowAboveExists?(row) && columnToTheLeftExists?(column) ? board[row-1][column] : ''
+   topLeft = rowAboveExists?(row) && columnToTheLeftExists?(column) ? board[row-1][column-1] : ''
    topMid = rowAboveExists?(row) ? board[row-1][column] : ''
    topRight = rowAboveExists?(row) && columnToTheRightExists?(board,column) ? board[row-1][column+1] : ''
 
    midLeft = columnToTheLeftExists?(column) ? board[row][column-1] : ''
    midRight = columnToTheRightExists?(board,column) ? board[row][column+1] : ''
 
-   botLeft = rowBelowExists?(board, row) && columnToTheLeftExists?(column) ? board[row+1][column] : ''
+   botLeft = rowBelowExists?(board, row) && columnToTheLeftExists?(column) ? board[row+1][column-1] : ''
    botMid = rowBelowExists?(board,row) ? board[row+1][column] : ''
    botRight = rowBelowExists?(board,row) && columnToTheRightExists?(board,column) ? board[row+1][column+1] : ''
 
@@ -33,6 +38,10 @@ class GameOfLife
   end
 
   private
+  def determineFate(c, neighbors)
+    getNumberOfNeighbors(neighbors) == 3 ? '*' : '.'
+  end
+
   def evolve_single_line_only(world)
     '.' * world.length
   end
