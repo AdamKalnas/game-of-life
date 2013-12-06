@@ -37,11 +37,13 @@ class GameOfLife
    topLeft + topMid + topRight + midLeft + midRight + botLeft + botMid + botRight
   end
 
-  private
   def determineFate(c, neighbors)
+    return '*' if c == '*' && getNumberOfNeighbors(neighbors) == 2
+    return '.' if c == '*' && getNumberOfNeighbors(neighbors) > 3
     getNumberOfNeighbors(neighbors) == 3 ? '*' : '.'
   end
 
+  private
   def evolve_single_line_only(world)
     '.' * world.length
   end

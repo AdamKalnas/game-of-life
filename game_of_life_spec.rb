@@ -7,6 +7,32 @@ describe GameOfLife, 'evolve' do
      '......']
   end
 
+  context 'when determining fate' do
+    context 'when the cell is alive' do
+      let(:cell) { '*' }
+
+      it 'should die because of underpopulation if it has less than 2 neighbors' do
+       subject.determineFate(cell, '*......').should eq('.') 
+      end
+
+      it 'should live on if it has 2 or 3 neighbors' do
+       subject.determineFate(cell, '**......').should eq('*') 
+       subject.determineFate(cell, '***.....').should eq('*') 
+      end
+
+      it 'should die if it has more than 3 neighbors' do
+        subject.determineFate(cell, '****....').should eq('.')
+      end
+    end
+    context 'when the cell is dead' do
+      let(:cell) { '.' }
+
+      it 'should become alive if it has exactly three neighbors' do
+       subject.determineFate(cell, '***.....').should eq('*') 
+      end
+    end
+  end
+
   context 'when evauluating evolutions on a single line' do
     it 'doesnt produce any new life when everything is dead' do
       subject.evolve('.....').should eq('.....')
@@ -17,7 +43,6 @@ describe GameOfLife, 'evolve' do
   end
 
   context 'when evaluating evolutions on multiple lines' do
-
     it 'doesnt produce any new life when everything is dead' do
       subject.evolve(blankSmallBoard).should eq(blankSmallBoard)
     end
@@ -67,4 +92,5 @@ describe GameOfLife, 'evolve' do
       subject.gatherNeighbors(2,5, blankSmallBoard).should eq('...')
     end
   end
+
 end
